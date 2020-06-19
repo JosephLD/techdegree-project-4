@@ -11,10 +11,22 @@ class Phrase {
     /**Displays the phrase in the game
      * @param {string} phrase The phrase that is going to be displayed in game
      */
-    addPhraseToDisplay(phrase) {
-        const phraseArr = phrase.split('');
-        phraseArr.forEach(letter => {
-            document.getElementById('phrase').firstElementChild.innerHTML = `<li class="hide letter ${letter}">${letter}</li>`;
-        })
-    }
- }
+    // addPhraseToDisplay(phrase) {
+    //     //Split the phrase into an array of letters
+    //     const phraseArr = phrase.split('');
+    //     //Create a new li element for each letter with class a unique class for that letter
+    //     phraseArr.forEach((letter) => {
+    //         //Here I create the list element
+    //         const phraseLi = document.createElement('li');
+    //         //Here I add a hide class to letters and space class to spaces
+    //         if (letter === ' ') {
+    //             //If the current letter is just an empty space the classname will be 'space'
+    //             phraseLi.className = 'space'
+    //         } else {
+    //             //if the letter is an actual letter, the class name will be 'hide letter ${}'
+    //             phraseLi.className = `hide letter ${letter}`;
+    //         }
+    //     }
+    
+    
+}
