@@ -23,6 +23,8 @@ class Game {
     getRandomPhrase() {
         //A random number between 0 and 4
         let randomIndex = Math.floor(Math.random()*5);
+        //Here The randomly chosen phrase is made the active phrase
+        this.activePhrase = this.phrase[randomIndex];
         return this.phrase[randomIndex];
     }
 }
