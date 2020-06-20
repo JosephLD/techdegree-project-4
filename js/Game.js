@@ -27,4 +27,19 @@ class Game {
         this.activePhrase = this.phrase[randomIndex];
         return this.phrase[randomIndex];
     }
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame() {
+        //Adding an event listener to the start button
+        document.getElementById('btn__reset').addEventListener('click', (e) => {
+            //Choosing a random phrase and adding it the display
+            this.getRandomPhrase().addPhraseToDisplay();
+            //Setting the display of the #overlay div to none (because hidden = true wasn't working)
+            //To reveal the phrase display
+            document.getElementById('overlay').style.display = 'none';
+            
+        } )
+    };
 }
