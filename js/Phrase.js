@@ -25,9 +25,32 @@ class Phrase {
             } else {
                 //If the character is not a space, it is given a custom class to hide it
                 phraseLi.className = `hide letter ${char}`;
+                phraseLi.innerText = `${char}`;
             }
             //Append the new li element to the ul element under the 'phrase' ID
             document.querySelector('#phrase ul').appendChild(phraseLi)
         });
+    };
+    /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    * @returns (string) The letter in the phrase that matches the input
+    */
+    checkLetter(letter) {
+        //break the phrase into an array again
+        const phraseArr = [...this.phrase];
+        //Using find to check each letter against the input letter
+        return phraseArr.find(char => char === letter)
+    };
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter) {
+        //iterate over the collection of elements with the class name of hiding the input letter
+        for (const char of document.getElementsByClassName(`.hide letter ${letter}`)) {
+            //changes the classname from hide to show
+            char.className = 'show';
+        }
     };
 }

@@ -38,4 +38,48 @@ class Game {
             //To reveal the phrase display
             document.getElementById('overlay').style.visibility = 'hidden';
     };
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+
+    };
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+
+    };
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+
+    };
+    //handles player actions
+    handleInteraction() {
+        //Handles player input by clicks on the onscreen keyboard
+        document.getElementById('qwerty').addEventListener('click', (e) => {
+            //testing the event
+            console.log(e.target.innerText);
+            //When a letter is clicked, it is run through the checkLetter method and checked against itself
+           if(this.activePhrase.checkLetter(e.target.innerText) === e.target.innerText) {
+                this.activePhrase.showMatchedLetter(e.target.innerText)
+           }
+        });
+        //Handles player input from computer keyboard
+        document.addEventListener('keyup', (e) => {
+            //testing the event
+            console.log(e.key);
+            //When a key is pressed, it is run through the checkLetter method and checked against itself
+            if(this.activePhrase.checkLetter(e.key) === e.key) {
+                this.activePhrase.showMatchedLetter(e.key)
+           }
+        })
+    };
 }

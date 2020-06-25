@@ -11,4 +11,5 @@ document.getElementById('btn__reset').addEventListener('click', (e) => {
     //and then call the start game method on it to start the game, hide the overlay,
     //and pick and display a hidden phrase
     game.startGame();
+    game.handleInteraction();
 })
