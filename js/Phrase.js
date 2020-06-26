@@ -47,10 +47,9 @@ class Phrase {
     * @param (string) letter - Letter to display
     */
     showMatchedLetter(letter) {
-        //iterate over the collection of elements with the class name of hiding the input letter
-        for (const char of document.getElementsByClassName(`.hide letter ${letter}`)) {
-            //changes the classname from hide to show
-            char.className = 'show';
-        }
+        //Here I convert the collection of li elements with the proper hidden letter into an array
+        const hideArray = [...document.getElementsByClassName(`hide letter ${letter}`)]
+        //I then iterate over the array and change the class name of each element to 'show'
+        hideArray.forEach(element => element.className = 'show')
     };
 }
