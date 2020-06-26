@@ -60,7 +60,12 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     */
     removeLife() {
-
+        //Here I store the lives from the scoreboard in a variable as a collection
+        const tries = document.getElementsByClassName('tries')
+        //Increase the missed counter by 1
+        this.missed += 1;
+        //The first li element is hidden from view, increasing the index with the number of misses
+        tries[this.missed - 1].style.visibility = 'hidden';
     };
     /**
     * Displays game over message
