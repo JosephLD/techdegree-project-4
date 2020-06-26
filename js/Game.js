@@ -44,7 +44,7 @@ class Game {
     won
     */
     checkForWin() {
-
+        
     };
     /**
     * Increases the value of the missed property
@@ -69,6 +69,7 @@ class Game {
             console.log(e.target.innerText);
             //When a letter is clicked, it is run through the checkLetter method and checked against itself
            if(this.activePhrase.checkLetter(e.target.innerText) === e.target.innerText) {
+                //If it is correct, the matched letter is shown
                 this.activePhrase.showMatchedLetter(e.target.innerText)
            }
         });
@@ -78,6 +79,7 @@ class Game {
             console.log(e.key);
             //When a key is pressed, it is run through the checkLetter method and checked against itself
             if(this.activePhrase.checkLetter(e.key) === e.key) {
+                //If it is correct, the matched letter is shown
                 this.activePhrase.showMatchedLetter(e.key)
            }
         })

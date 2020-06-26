@@ -1,4 +1,6 @@
-//Handles the createion of the phrases
+/**The class for the phrase object
+ * Handles the creation and manipulation of phrase objects
+ */
 class Phrase {
     /**Creating the phrase to be guessed
      * @param {string} phrase The phrase to be guessed
