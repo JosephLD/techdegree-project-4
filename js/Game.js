@@ -44,7 +44,15 @@ class Game {
     won
     */
     checkForWin() {
-        
+        //Here I store the li elements with a class of hide in a variable as a collection
+        const hiddenLi = document.getElementsByClassName('hide');
+        //If the collection is greater than zero, return false because the game has not been won
+        if (hiddenLi.length > 0) {
+            return false;
+        } else if (hiddenLi.length === 0) {
+            //If the collection equals 0, return false as the entire phrase has been revealed
+            return true;
+        }
     };
     /**
     * Increases the value of the missed property
