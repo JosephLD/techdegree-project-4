@@ -65,14 +65,19 @@ class Game {
         //Increase the missed counter by 1
         this.missed += 1;
         //The first li element is hidden from view, increasing the index with the number of misses
-        tries[this.missed - 1].style.visibility = 'hidden';
+        tries[this.missed - 1].firstElementChild.src = "images/lostHeart.png";
     };
     /**
     * Displays game over message
     * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver(gameWon) {
-
+        //Storing the game over header in a varaible for future use
+        const gameOverMessage = document.getElementById("game-over-message");
+        //Show the overlay/Main menue once more
+        document.getElementById('overlay').style.visibility = 'visible'
+        //reset the game
+        
     };
     //handles player actions
     handleInteraction() {
