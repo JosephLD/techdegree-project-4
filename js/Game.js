@@ -39,6 +39,29 @@ class Game {
             document.getElementById('overlay').style.visibility = 'hidden';
     };
     /**
+     * Resets the game to its beginning state
+     */
+    resetGame() {
+        //Show the overlay/Main menue once more
+        document.getElementById('overlay').style.visibility = 'visible';
+        /*Reset th game */
+        //Missed is set back to 0
+        this.missed = 0;
+        const tries = document.getElementsByClassName('tries');
+        //All hearts are made into live hearts
+        [...tries].forEach(life => life.firstElementChild.src = "images/liveHeart.png")
+        //Here the phrase is removed from the board
+        //A for loop is used to remove every element individually, both hidden letters and spaces
+        for(let i = 0; i < this.activePhrase.phrase.length; i++) {
+            //The ul element the phrase is under is stored for easier use
+            const phraseUl = document.getElementById('phrase').firstElementChild;
+            //The first child of the ul element (the phrase letters and spaces) is removed each loop
+            phraseUl.removeChild(phraseUl.firstElementChild)
+        }
+        //Active phrase is set back to null
+        this.activePhrase = null
+    }
+    /**
     * Checks for winning move
     * @return {boolean} True if game has been won, false if game wasn't
     won
@@ -66,6 +89,15 @@ class Game {
         this.missed += 1;
         //The first li element is hidden from view, increasing the index with the number of misses
         tries[this.missed - 1].firstElementChild.src = "images/lostHeart.png";
+        //if You lose 5 lives, the game is lost and reset
+        if(this.missed === 5) {
+            //Reset the game to it's default state
+            this.resetGame()
+            //The lose class is applied to the game container
+            document.getElementById('overlay').className = 'lose'
+            const gameOverMessage = document.getElementById("game-over-message");
+            gameOverMessage.innerText = 'You lost.  Want to try again?'
+        }
     };
     /**
     * Displays game over message
@@ -74,21 +106,7 @@ class Game {
     gameOver(gameWon) {
         //Storing the game over header in a varaible for future use
         const gameOverMessage = document.getElementById("game-over-message");
-        //Show the overlay/Main menue once more
-        document.getElementById('overlay').style.visibility = 'visible';
-        /*Reset th game */
-        //Missed is set back to 0
-        this.missed = 0;
-        //Here the phrase is removed from the board
-        //A fo loop is used to remove every element individually, both hidden letters and spaces
-        for(let i = 0; i < this.activePhrase.phrase.length; i++) {
-            //The ul element the phrase is under is stored for easier use
-            const phraseUl = document.getElementById('phrase').firstElementChild;
-            //The first child of the ul element (the phrase letters and spaces) is removed each loop
-            phraseUl.removeChild(phraseUl.firstElementChild)
-        }
-        //Active phrase is set back to null
-        this.activePhrase = null
+        
         //A conditional gameover message is shown based on if the game was won
         if(gameWon) {
             //If true, shows a winning message
