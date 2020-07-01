@@ -197,6 +197,7 @@ button {
 
 .lose {
   background-color: #f5785f;
+  /* background: linear-gradient(red,black,red) */
 }
 
 .lose a {
