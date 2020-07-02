@@ -13,3 +13,16 @@ document.getElementById('btn__reset').addEventListener('click', (e) => {
     game.startGame();
     game.handleInteraction();
 })
+
+ //Handles player input by clicks on the onscreen keyboard
+        /**
+         * First I get a collection of key class elements
+         * I then loop over them, adding an event listener to each one
+         */
+        document.querySelectorAll('.key').forEach(key => {
+            key.addEventListener('click', game.handleInteraction(button))
+        })
+        //Handles player input from computer keyboard
+        document.addEventListener('keyup', (e) => {
+           
+        })

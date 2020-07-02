@@ -73,6 +73,7 @@ class Game {
         if (hiddenLi.length > 0) {
             return false;
         } else if (hiddenLi.length === 0) {
+            this.resetGame();
             //If the collection equals 0, return true as the entire phrase has been revealed
             return true;
         }
@@ -109,45 +110,34 @@ class Game {
         
         //A conditional gameover message is shown based on if the game was won
         if(gameWon) {
+            document.getElementById('overlay').className = 'win';
             //If true, shows a winning message
             gameOverMessage.innerText = 'Congratulations!  Play again?'
-        } else {
-            //If false, shows a losing message
-            gameOverMessage.innerText = 'You lost.  Want to try again?'
+            this.resetGame();
         }
     };
     //handles player actions
-    handleInteraction() {
-        //Handles player input by clicks on the onscreen keyboard
-        /**
-         * First I get a collection of key class elements
-         * I then loop over them, adding an event listener to each one
-         */
-        document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', (e) => {
-                /**
-                 * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
-                 */
-                console.log(e.target.innerText)
-                //When a letter is clicked, it is run through the checkLetter method and checked against itself
-                if(this.activePhrase.checkLetter(e.target.innerText) === e.target.innerText) {
-                        //If it is correct, the matched letter is shown
-                        this.activePhrase.showMatchedLetter(e.target.innerText)
+    handleInteraction(button) {
+        // /**
+        //          * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
+        //          */
+        //         //For clicks
+        //         console.log(e.target.innerText)
+        //         //When a letter is clicked, it is run through the checkLetter method and checked against itself
+        //         if(this.activePhrase.checkLetter(e.target.innerText) === e.target.innerText) {
+        //                 //If it is correct, the matched letter is shown
+        //                 this.activePhrase.showMatchedLetter(e.target.innerText)
                         
-                    }
-            })
-        })
-        //Handles player input from computer keyboard
-        document.addEventListener('keyup', (e) => {
-            /**
-             * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
-             */
-            console.log(e.key)
-            //When a key is pressed, it is run through the checkLetter method and checked against itself
-            if(this.activePhrase.checkLetter(e.key) === e.key) {
-                //If it is correct, the matched letter is shown
-                this.activePhrase.showMatchedLetter(e.key)
-           }
-        })
+        //             }
+        //              /**
+        //      * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
+        //      */
+        //     //For keyboard
+        //     console.log(e.key)
+        //     //When a key is pressed, it is run through the checkLetter method and checked against itself
+        //     if(this.activePhrase.checkLetter(e.key) === e.key) {
+        //         //If it is correct, the matched letter is shown
+        //         this.activePhrase.showMatchedLetter(e.key)
+        //    }
     };
 }
