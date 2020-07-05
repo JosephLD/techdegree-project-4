@@ -116,8 +116,35 @@ class Game {
             this.resetGame();
         }
     };
-    //handles player actions
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
     handleInteraction(button) {
+        /**
+         * There are two branches for this method: a 'click' branch and a 'keyup' branch
+         * The 'click' branch handles clicks made to the onscreen letters
+         * The 'keyup' branch handles the pressing of the computer's physical keys
+         */
+        //'click' branch
+        if (button.type === 'click'){
+            //!!Test for event, remove before submission!!
+            console.log(button.target)
+            //When a letter is clicked, it is run through the checkLetter method and checked against itself
+            if(this.activePhrase.checkLetter(button.target.innerText) === button.target.innerText) {
+                //If it is correct, the matched letter is shown
+                this.activePhrase.showMatchedLetter(button.target.innerText)
+                //And the game checks for a winning move
+                if(this.checkForWin()) {
+                    this.gameOver(this.checkForWin)
+                }
+                    }
+        } 
+        //'keyup' branch
+        else if (button.type === 'keyup') {
+            //!!Test for event, remove before submission!!
+            console.log(button.key)
+        }
         // /**
         //          * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
         //          */

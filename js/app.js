@@ -11,7 +11,6 @@ document.getElementById('btn__reset').addEventListener('click', (e) => {
     //and then call the start game method on it to start the game, hide the overlay,
     //and pick and display a hidden phrase
     game.startGame();
-    game.handleInteraction();
 })
 
  //Handles player input by clicks on the onscreen keyboard
@@ -20,9 +19,11 @@ document.getElementById('btn__reset').addEventListener('click', (e) => {
          * I then loop over them, adding an event listener to each one
          */
         document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', game.handleInteraction(button))
+            key.addEventListener('click', e => {
+                game.handleInteraction(e)
+            })
         })
         //Handles player input from computer keyboard
-        document.addEventListener('keyup', (e) => {
-           
+        document.addEventListener('keyup', e => {
+            game.handleInteraction(e)
         })
