@@ -73,7 +73,6 @@ class Game {
         if (hiddenLi.length > 0) {
             return false;
         } else if (hiddenLi.length === 0) {
-            this.resetGame();
             //If the collection equals 0, return true as the entire phrase has been revealed
             return true;
         }
@@ -97,7 +96,7 @@ class Game {
             //The lose class is applied to the game container
             document.getElementById('overlay').className = 'lose'
             const gameOverMessage = document.getElementById("game-over-message");
-            gameOverMessage.innerText = 'You lost.  Want to try again?'
+            gameOverMessage.innerHTML = `You lost... <br> Try again?`
         }
     };
     /**
@@ -112,7 +111,7 @@ class Game {
         if(gameWon) {
             document.getElementById('overlay').className = 'win';
             //If true, shows a winning message
-            gameOverMessage.innerText = 'Congratulations!  Play again?'
+            gameOverMessage.innerHTML = `Congratulations! <br> Play again?`
             this.resetGame();
         }
     };
@@ -130,21 +129,36 @@ class Game {
         if (button.type === 'click'){
             //!!Test for event, remove before submission!!
             console.log(button.target)
+            
             //When a letter is clicked, it is run through the checkLetter method and checked against itself
-            if(this.activePhrase.checkLetter(button.target.innerText) === button.target.innerText) {
+            if(this.activePhrase.checkLetter(button.target.innerText)) {
                 //If it is correct, the matched letter is shown
                 this.activePhrase.showMatchedLetter(button.target.innerText)
+                //The chosen letter is given the 'chosen' class
+                button.target.className = 'chosen'
+                //And then disabeled
+                button.target.disabeled = true;
                 //And the game checks for a winning move
                 if(this.checkForWin()) {
                     this.gameOver(this.checkForWin)
                 }
-                    }
-        } 
+                //If the letter is not a match
+            } else { 
+                //A life is removed
+                this.removeLife();
+                //The chosen letter is given a class of 'wrong'
+                button.target.className = 'wrong'
+                //And is disabeled
+                button.target.disabeled = true;
+            }
+        }
+        
         //'keyup' branch
         else if (button.type === 'keyup') {
             //!!Test for event, remove before submission!!
             console.log(button.key)
         }
+    }
         // /**
         //          * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
         //          */
@@ -166,5 +180,4 @@ class Game {
         //         //If it is correct, the matched letter is shown
         //         this.activePhrase.showMatchedLetter(e.key)
         //    }
-    };
-}
+};

@@ -36,13 +36,13 @@ class Phrase {
     /**
     * Checks if passed letter is in phrase
     * @param (string) letter - Letter to check
-    * @returns (string) The letter in the phrase that matches the input
+    * @returns (boolean) True if the input letter is in the phrase, false if it isn't
     */
     checkLetter(letter) {
         //break the phrase into an array again
         const phraseArr = [...this.phrase];
-        //Using find to check each letter against the input letter
-        return phraseArr.find(char => char === letter)
+        //Using includes to check each letter against the input letter and return true or false
+        return phraseArr.includes(letter)
     };
     /**
     * Displays passed letter on screen after a match is found
