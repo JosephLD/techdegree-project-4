@@ -60,6 +60,19 @@ class Game {
         }
         //Active phrase is set back to null
         this.activePhrase = null
+        //All the 'wrong' or 'chosen' classes are set back to 'key'
+        //Save the keyrow divs as an array
+        const keyrow = [...document.getElementsByClassName('keyrow')]
+        //Loop over them with forEach
+        keyrow.forEach(div => {
+            //store all the children of each div as an array
+            const divChildren = [...div.children]
+            //loop over each child button with forEach
+            divChildren.forEach(button => {
+                //assign each button the key class
+                button.className = 'key'
+            })
+        })
     }
     /**
     * Checks for winning move
@@ -127,9 +140,6 @@ class Game {
          */
         //'click' branch
         if (button.type === 'click'){
-            //!!Test for event, remove before submission!!
-            console.log(button.target)
-            
             //When a letter is clicked, it is run through the checkLetter method and checked against itself
             if(this.activePhrase.checkLetter(button.target.innerText)) {
                 //If it is correct, the matched letter is shown
@@ -143,13 +153,13 @@ class Game {
                     this.gameOver(this.checkForWin)
                 }
                 //If the letter is not a match
-            } else { 
-                //A life is removed
-                this.removeLife();
+            } else {
                 //The chosen letter is given a class of 'wrong'
                 button.target.className = 'wrong'
                 //And is disabeled
-                button.target.disabeled = true;
+                button.target.disabeled = true; 
+                //A life is removed
+                this.removeLife();
             }
         }
         
