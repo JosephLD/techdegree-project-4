@@ -140,9 +140,9 @@ class Game {
          */
         //'click' branch
         if (button.type === 'click'){
-            //When a letter is clicked, it is run through the checkLetter method and checked against itself
+            //When a letter is clicked, it is run through the checkLetter method
             if(this.activePhrase.checkLetter(button.target.innerText)) {
-                //If it is correct, the matched letter is shown
+                //If it returns true, a correct letter has been chosen and the matched letter is shown
                 this.activePhrase.showMatchedLetter(button.target.innerText)
                 //The chosen letter is given the 'chosen' class
                 button.target.className = 'chosen'
@@ -150,7 +150,7 @@ class Game {
                 button.target.disabeled = true;
                 //And the game checks for a winning move
                 if(this.checkForWin()) {
-                    this.gameOver(this.checkForWin)
+                    this.gameOver(this.checkForWin())
                 }
                 //If the letter is not a match
             } else {
@@ -167,27 +167,31 @@ class Game {
         else if (button.type === 'keyup') {
             //!!Test for event, remove before submission!!
             console.log(button.key)
+            //When a key is released, that key is run through the checkLetter method
+            if(this.activePhrase.checkLetter(button.key)) {
+                //If it returns true, then a correct key has been pushed and the matched letter is revealed
+                this.activePhrase.showMatchedLetter(button.key);
+                //The letter is then given a class of 'chosen' to highlight it
+                //Store the keyrow divs in an array to loop over them
+                const keyrow = [...document.getElementsByClassName('keyrow')]
+                keyrow.forEach(div => {
+                    //then store the children (buttons) of each div into an array to loop over them
+                    const divChildren = [...div.children]
+                    divChildren.forEach(child => {
+                        //If the button element matches the key that's been pressed:
+                        if(child.innerText === button.key){
+                            //It's class name is changed to 'chosen'
+                            child.className = 'chosen'
+                            //And disabeled
+                            child.disabeled = true;
+                        }
+                    })
+                })
+                //And a winning move is checked for
+                if(this.checkForWin()){
+                    this.gameOver(this.checkForWin())
+                }
+            }
         }
     }
-        // /**
-        //          * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
-        //          */
-        //         //For clicks
-        //         console.log(e.target.innerText)
-        //         //When a letter is clicked, it is run through the checkLetter method and checked against itself
-        //         if(this.activePhrase.checkLetter(e.target.innerText) === e.target.innerText) {
-        //                 //If it is correct, the matched letter is shown
-        //                 this.activePhrase.showMatchedLetter(e.target.innerText)
-                        
-        //             }
-        //              /**
-        //      * TEST FOR EVENT!!!!  REMOVE BEFORE SUBMISION!!!
-        //      */
-        //     //For keyboard
-        //     console.log(e.key)
-        //     //When a key is pressed, it is run through the checkLetter method and checked against itself
-        //     if(this.activePhrase.checkLetter(e.key) === e.key) {
-        //         //If it is correct, the matched letter is shown
-        //         this.activePhrase.showMatchedLetter(e.key)
-        //    }
 };
