@@ -141,7 +141,7 @@ class Game {
         //'click' branch
         if (button.type === 'click'){
             //When a letter is clicked, it is run through the checkLetter method
-            if(this.activePhrase.checkLetter(button.target.innerText)) {
+            if(this.activePhrase.checkLetter(button.target.innerText) && button.target.disabeled !== true) {
                 //If it returns true, a correct letter has been chosen and the matched letter is shown
                 this.activePhrase.showMatchedLetter(button.target.innerText)
                 //The chosen letter is given the 'chosen' class
@@ -153,7 +153,7 @@ class Game {
                     this.gameOver(this.checkForWin())
                 }
                 //If the letter is not a match
-            } else {
+            } else if (button.target.disabeled !== true) {
                 //The chosen letter is given a class of 'wrong'
                 button.target.className = 'wrong'
                 //And is disabeled
