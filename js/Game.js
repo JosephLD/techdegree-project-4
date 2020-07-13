@@ -140,7 +140,7 @@ class Game {
          */
         //'click' branch
         if (button.type === 'click'){
-            //When a letter is clicked, it is run through the checkLetter method
+            //When a letter is clicked, it is run through the checkLetter method and also checked to see it has been clicked before
             if(this.activePhrase.checkLetter(button.target.innerText) && button.target.disabeled !== true) {
                 //If it returns true, a correct letter has been chosen and the matched letter is shown
                 this.activePhrase.showMatchedLetter(button.target.innerText)
@@ -152,7 +152,7 @@ class Game {
                 if(this.checkForWin()) {
                     this.gameOver(this.checkForWin())
                 }
-                //If the letter is not a match
+                //If the letter is not a match and has not been clicked before
             } else if (button.target.disabeled !== true) {
                 //The chosen letter is given a class of 'wrong'
                 button.target.className = 'wrong'
@@ -167,8 +167,8 @@ class Game {
         else if (button.type === 'keyup') {
             //!!Test for event, remove before submission!!
             console.log(button.key)
-            //When a key is released, that key is run through the checkLetter method
-            if(this.activePhrase.checkLetter(button.key)) {
+            //When a key is released, that key is run through the checkLetter method and is also checked if it has been pressed before
+            if(this.activePhrase.checkLetter(button.key) && button.target.disabeled !== true) {
                 //If it returns true, then a correct key has been pushed and the matched letter is revealed
                 this.activePhrase.showMatchedLetter(button.key);
                 //The letter is then given a class of 'chosen' to highlight it
@@ -191,6 +191,9 @@ class Game {
                 if(this.checkForWin()){
                     this.gameOver(this.checkForWin())
                 }
+                //If the key doesn't match any letter, and hasn't been pressed before
+            } else if(button.target.disabeled !== true) {
+
             }
         }
     }
