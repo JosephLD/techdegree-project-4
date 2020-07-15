@@ -61,18 +61,14 @@ class Game {
         //Active phrase is set back to null
         this.activePhrase = null
         //All the 'wrong' or 'chosen' classes are set back to 'key'
-        //Save the keyrow divs as an array
-        const keyrow = [...document.getElementsByClassName('keyrow')]
+        //Save the buttons that are children of div tags as an array
+        const keys = [...document.querySelectorAll('div>button')]
         //Loop over them with forEach
-        keyrow.forEach(div => {
-            //store all the children of each div as an array
-            const divChildren = [...div.children]
-            //loop over each child button with forEach
-            divChildren.forEach(button => {
+        keys.forEach(button => {
                 //assign each button the key class
-                button.className = 'key'
+                button.className = 'key';
+                button.disabeled = false;
             })
-        })
     }
     /**
     * Checks for winning move
@@ -165,35 +161,34 @@ class Game {
         
         //'keyup' branch
         else if (button.type === 'keyup') {
+            //Store the letter buttons as an array for future manipulation
+            const keys = [...document.querySelectorAll('div>button')]
+            //Find the letter button that matches the key that was pressed and store it in a variable for future use
+            const letter = keys.find(letter => letter.innerText === button.key)
             //!!Test for event, remove before submission!!
             console.log(button.key)
             //When a key is released, that key is run through the checkLetter method and is also checked if it has been pressed before
-            if(this.activePhrase.checkLetter(button.key) && button.target.disabeled !== true) {
+            if(this.activePhrase.checkLetter(button.key) && letter.disabeled !== true) {
                 //If it returns true, then a correct key has been pushed and the matched letter is revealed
                 this.activePhrase.showMatchedLetter(button.key);
-                //The letter is then given a class of 'chosen' to highlight it
-                //Store the keyrow divs in an array to loop over them
-                const keyrow = [...document.getElementsByClassName('keyrow')]
-                keyrow.forEach(div => {
-                    //then store the children (buttons) of each div into an array to loop over them
-                    const divChildren = [...div.children]
-                    divChildren.forEach(child => {
-                        //If the button element matches the key that's been pressed:
-                        if(child.innerText === button.key){
-                            //It's class name is changed to 'chosen'
-                            child.className = 'chosen'
-                            //And disabeled
-                            child.disabeled = true;
-                        }
-                    })
-                })
+                //Find the letter button that matches the key that was pressed and store it in a variable
+                const letter = keys.find(letter => letter.innerText === button.key)
+                //The button is then given the chosen class name
+                letter.className = 'chosen';
+                //And disabeled
+                letter.disabeled = true;
                 //And a winning move is checked for
                 if(this.checkForWin()){
                     this.gameOver(this.checkForWin())
                 }
                 //If the key doesn't match any letter, and hasn't been pressed before
-            } else if(button.target.disabeled !== true) {
-
+            } else if(letter.disabeled !== true) {
+                //The button is then given the chosen class name
+                letter.className = 'wrong';
+                //And disabeled
+                letter.disabeled = true;
+                //A life is removed
+                this.removeLife();
             }
         }
     }
