@@ -72,6 +72,7 @@ button {
   height: 100%;
   max-height: 900px;
   text-align: center;
+  background: linear-gradient(#3f2bf0, #f02bdc, #d6bb51);
 }
 
 .section {
@@ -101,6 +102,8 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
+  /* Giving the letter class a slight shadow */
+  box-shadow: -5px 5px 8px  grey, 5px 6px 8px  black;
 }
 
 .space {
@@ -120,6 +123,8 @@ button {
   border-radius: 5px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
+  /* Giving the shown letters an overlapping box shadow */
+  box-shadow: -5px 5px 8px  black, 5px 6px 8px  grey;
 }
 
 
@@ -130,16 +135,38 @@ button {
   justify-content: center;
 }
 
+/* Changing the onscreen keyboard buttons */
+.key {
+  border-radius: 50%;
+  background: linear-gradient(#b5acae, #9c757d);
+  border: 10px outset #926e75;
+  box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
+  height: 60px;
+  width: 60px;
+}
+
 .chosen {
-  background: #3a3f58;
-  border-radius: 5px;
+  /* Changed the chosen class to a light blue and red gradient */
+  background: linear-gradient(#30dec7, #9c757d);
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+  /* Changed its border radius to slightly round */
+  border-radius: 15%;
+  /* It keeps both its border and shadow */
+  border: 10px outset #9c757d;
+  box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
 }
 
 .wrong {
-  background: #f7a964;
+  /* Changed the wrong class to a red and yellow gradient */
+  background: linear-gradient(#9c757d, #e0b014);
   color: #FFFFFF;
+  /* Gave it a more round border radius */
+  border-radius: 30%;
+  /* its border is changed to inset rather than outset */
+  border: 10px inset #9c757d;
+  /* It keeps its shadow */
+  box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
 }
 
 .btn__reset {
@@ -181,6 +208,8 @@ button {
 
 .start {
   background-color: #3a3f58;
+  /* Setting a soft, dark gradient as the background of the start screen */
+  background: linear-gradient(#000, #1a1515, #000);
 }
 
 .start a {
@@ -197,9 +226,11 @@ button {
 
 .lose {
   background-color: #f5785f;
-  /* background: linear-gradient(red,black,red) */
+  /* Changing the background of the lose screen to an angsty red and black gradient */
+  background: linear-gradient(red,black,red)
 }
 
 .lose a {
   color: var(--color-lose);
 }
+

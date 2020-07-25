@@ -62,7 +62,7 @@ class Game {
         this.activePhrase = null
         //All the 'wrong' or 'chosen' classes are set back to 'key'
         //Save the buttons that are children of div tags as an array
-        const keys = [...document.querySelectorAll('div>button')]
+        const keys = [...document.querySelectorAll('.keyrow>button')]
         //Loop over them with forEach
         keys.forEach(button => {
                 //assign each button the key class
@@ -100,12 +100,12 @@ class Game {
         tries[this.missed - 1].firstElementChild.src = "images/lostHeart.png";
         //if You lose 5 lives, the game is lost and reset
         if(this.missed === 5) {
-            //Reset the game to it's default state
-            this.resetGame()
             //The lose class is applied to the game container
             document.getElementById('overlay').className = 'lose'
             const gameOverMessage = document.getElementById("game-over-message");
             gameOverMessage.innerHTML = `You lost... <br> Try again?`
+            //Reset the game to it's default state
+            this.resetGame()
         }
     };
     /**
@@ -162,11 +162,9 @@ class Game {
         //'keyup' branch
         else if (button.type === 'keyup') {
             //Store the letter buttons as an array for future manipulation
-            const keys = [...document.querySelectorAll('div>button')]
+            const keys = [...document.querySelectorAll('.keyrow>button')]
             //Find the letter button that matches the key that was pressed and store it in a variable for future use
             const letter = keys.find(letter => letter.innerText === button.key)
-            //!!Test for event, remove before submission!!
-            console.log(button.key)
             //When a key is released, that key is run through the checkLetter method and is also checked if it has been pressed before
             if(this.activePhrase.checkLetter(button.key) && letter.disabeled !== true) {
                 //If it returns true, then a correct key has been pushed and the matched letter is revealed
@@ -179,6 +177,7 @@ class Game {
                 letter.disabeled = true;
                 //And a winning move is checked for
                 if(this.checkForWin()){
+                    //Delay ending the game by 2 seconds so the full phrase can be seen
                     this.gameOver(this.checkForWin())
                 }
                 //If the key doesn't match any letter, and hasn't been pressed before
