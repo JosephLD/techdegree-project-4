@@ -36,7 +36,7 @@ class Game {
             this.getRandomPhrase().addPhraseToDisplay();
             //Setting the visibility of the #overlay div to hidden (because hidden = true wasn't working)
             //To reveal the phrase display
-            document.getElementById('overlay').style.visibility = 'hidden';
+            document.getElementById('overlay').style.visibility = 'hidden'
     };
     /**
      * Resets the game to its beginning state

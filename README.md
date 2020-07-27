@@ -9,9 +9,14 @@ Style changes:
     style.css: 
         line 75: Added a new background linear gradient to the main-container class
 
+        line 90: Darkened the color of the header class
+
         line 106: Added a shadow to the letter class elements to make them stand out a bit more
 
-        line 127: Added a shadow to the show class elements to make them appear overlapped
+        line 127: Added the following to the show class:
+            Added a shadow to the show class elements to make them appear overlapped
+            Added a linear gradient that goes from a light blue to white color
+            Changed the color of the text from white to rich black
 
         lines 139-146: added a key class selector in order to make the following changes:
             Set the border radius to 50% to make the keys round
@@ -33,6 +38,10 @@ Style changes:
             Added a red inset border
             Added a box shadow to make it appear backlit
 
+        lines 175-188: Changed the btn__reset selectors from class to id and added a boxshadow 
+
         line 212: Added a linear gradient to the start class
+
+        line 226: Added a linear gradient to the win class
 
         line 230: Added a linear gradient to the lose class

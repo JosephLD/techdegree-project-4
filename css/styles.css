@@ -87,7 +87,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #0d0e14;
 }
 
 
@@ -113,7 +113,8 @@ button {
 
 
 .show {
-  color: #fff;
+  /* Changed the color to rich black */
+  color: #004040;
   background-color: #4ac0d5;
   font-size: 20px;
   height: 65px;
@@ -125,6 +126,8 @@ button {
   animation-duration: .5s;
   /* Giving the shown letters an overlapping box shadow */
   box-shadow: -5px 5px 8px  black, 5px 6px 8px  grey;
+  /* Giving the boxes a slight gradient */
+  background: linear-gradient(#4ac0d5, white);
 }
 
 
@@ -139,7 +142,7 @@ button {
 .key {
   border-radius: 50%;
   background: linear-gradient(#b5acae, #9c757d);
-  border: 10px outset #926e75;
+  border: 7px outset #926e75;
   box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
   height: 60px;
   width: 60px;
@@ -153,7 +156,7 @@ button {
   /* Changed its border radius to slightly round */
   border-radius: 15%;
   /* It keeps both its border and shadow */
-  border: 10px outset #9c757d;
+  border: 7px outset #9c757d;
   box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
 }
 
@@ -164,23 +167,25 @@ button {
   /* Gave it a more round border radius */
   border-radius: 30%;
   /* its border is changed to inset rather than outset */
-  border: 10px inset #9c757d;
+  border: 7px inset #9c757d;
   /* It keeps its shadow */
   box-shadow: -5px 5px 8px  silver, 5px 6px 8px  grey;
 }
 
-.btn__reset {
+#btn__reset {
   padding: 16px;
   margin: 50px auto;
-  background: #f7a964;
+  background: #fff;
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
   border-bottom: solid 4px rgba(0, 0, 0, .3);
-  border-right: solid 3px rgba(0, 0, 0, .3)
+  border-right: solid 3px rgba(0, 0, 0, .3);
+  /* Adding a box shadow to make it stand out */
+  box-shadow: -5px 5px 8px  black, 5px 6px 8px  black;
 }
 
-.btn__reset:active {
+#btn__reset:active {
   padding: 14px 16px 16px 14px;
   border-bottom: solid 4px rgba(0, 0, 0, 0);
   border-right: solid 3px rgba(0, 0, 0, 0);
@@ -218,6 +223,7 @@ button {
 
 .win {
   background-color: var(--color-win);
+  background: linear-gradient(white,15%, green, 75%, white);
 }
 
 .win a {
