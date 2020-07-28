@@ -34,7 +34,7 @@ class Game {
     startGame() {
             //Choosing a random phrase and adding it the display
             this.getRandomPhrase().addPhraseToDisplay();
-            //Setting the visibility of the #overlay div to hidden (because hidden = true wasn't working)
+            //Setting the display property of the #overlay div to none
             //To reveal the phrase display
             document.getElementById('overlay').style.display = 'none'
     };
