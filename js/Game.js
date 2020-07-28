@@ -36,14 +36,14 @@ class Game {
             this.getRandomPhrase().addPhraseToDisplay();
             //Setting the visibility of the #overlay div to hidden (because hidden = true wasn't working)
             //To reveal the phrase display
-            document.getElementById('overlay').style.visibility = 'hidden'
+            document.getElementById('overlay').style.display = 'none'
     };
     /**
      * Resets the game to its beginning state
      */
     resetGame() {
         //Show the overlay/Main menue once more
-        document.getElementById('overlay').style.visibility = 'visible';
+        document.getElementById('overlay').style.display = 'flex';
         /*Reset th game */
         //Missed is set back to 0
         this.missed = 0;

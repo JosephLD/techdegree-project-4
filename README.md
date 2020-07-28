@@ -2,7 +2,7 @@
  OOP web browser phrase guesser game
 
  Project description:
-    This project is a web based application in which the user must guess a random phrase by selecting letters from the onscreen keyboard or, as I am aiming for exceeds expectations, by pressing the letter keys on their computer keyboard.  This project utilizes object oriented javascript and uses only vanilla js.
+    This project is a web based application in which the user must guess a random phrase by selecting letters from the onscreen keyboard or by pressing the letter keys on their computer keyboard.  If you guess wrong five times, it's game-over.  This project utilizes object oriented javascript and uses only vanilla js.
 
 Style changes:
     Any style changes and personalization will be listed below for the excceds expectations requirements
