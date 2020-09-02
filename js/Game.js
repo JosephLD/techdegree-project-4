@@ -137,13 +137,13 @@ class Game {
         //'click' branch
         if (button.type === 'click'){
             //When a letter is clicked, it is run through the checkLetter method and also checked to see it has been clicked before
-            if(this.activePhrase.checkLetter(button.target.innerText) && button.target.disabeled !== true) {
+            if(this.activePhrase.checkLetter(button.target.innerText)) {
                 //If it returns true, a correct letter has been chosen and the matched letter is shown
                 this.activePhrase.showMatchedLetter(button.target.innerText)
                 //The chosen letter is given the 'chosen' class
                 button.target.className = 'chosen'
                 //And then disabeled
-                button.target.disabeled = true;
+                button.target.disabled = true;
                 //And the game checks for a winning move
                 if(this.checkForWin()) {
                     this.gameOver(this.checkForWin())
@@ -153,7 +153,7 @@ class Game {
                 //The chosen letter is given a class of 'wrong'
                 button.target.className = 'wrong'
                 //And is disabeled
-                button.target.disabeled = true; 
+                button.target.disabled = true; 
                 //A life is removed
                 this.removeLife();
             }
@@ -166,7 +166,7 @@ class Game {
             //Find the letter button that matches the key that was pressed and store it in a variable for future use
             const letter = keys.find(letter => letter.innerText === button.key)
             //When a key is released, that key is run through the checkLetter method and is also checked if it has been pressed before
-            if(this.activePhrase.checkLetter(button.key) && letter.disabeled !== true) {
+            if(this.activePhrase.checkLetter(button.key) && letter.disabled !== true) {
                 //If it returns true, then a correct key has been pushed and the matched letter is revealed
                 this.activePhrase.showMatchedLetter(button.key);
                 //Find the letter button that matches the key that was pressed and store it in a variable
@@ -174,18 +174,18 @@ class Game {
                 //The button is then given the chosen class name
                 letter.className = 'chosen';
                 //And disabeled
-                letter.disabeled = true;
+                letter.disabled = true;
                 //And a winning move is checked for
                 if(this.checkForWin()){
                     //Delay ending the game by 2 seconds so the full phrase can be seen
                     this.gameOver(this.checkForWin())
                 }
                 //If the key doesn't match any letter, and hasn't been pressed before
-            } else if(letter.disabeled !== true) {
+            } else if(letter.disabled !== true) {
                 //The button is then given the chosen class name
                 letter.className = 'wrong';
                 //And disabeled
-                letter.disabeled = true;
+                letter.disabled = true;
                 //A life is removed
                 this.removeLife();
             }
