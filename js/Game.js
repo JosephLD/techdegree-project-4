@@ -22,7 +22,7 @@ class Game {
     */
     getRandomPhrase() {
         //A random number between 0 and 4
-        let randomIndex = Math.floor(Math.random()*5);
+        let randomIndex = Math.floor(Math.random()*this.phrase.length);
         //Here The randomly chosen phrase is made the active phrase
         this.activePhrase = this.phrase[randomIndex];
         return this.phrase[randomIndex];
@@ -128,49 +128,49 @@ class Game {
     * Handles onscreen keyboard button clicks
     * @param (HTMLButtonElement) button - The clicked button element
     */
-    handleInteraction(button) {
+    handleInteraction(e) {
         /**
          * There are two branches for this method: a 'click' branch and a 'keyup' branch
          * The 'click' branch handles clicks made to the onscreen letters
          * The 'keyup' branch handles the pressing of the computer's physical keys
          */
         //'click' branch
-        if (button.type === 'click'){
+        if (e.type === 'click'){
             //When a letter is clicked, it is run through the checkLetter method and also checked to see it has been clicked before
-            if(this.activePhrase.checkLetter(button.target.innerText)) {
+            if(this.activePhrase.checkLetter(e.target.innerText)) {
                 //If it returns true, a correct letter has been chosen and the matched letter is shown
-                this.activePhrase.showMatchedLetter(button.target.innerText)
+                this.activePhrase.showMatchedLetter(e.target.innerText)
                 //The chosen letter is given the 'chosen' class
-                button.target.className = 'chosen'
+                e.target.className = 'chosen'
                 //And then disabeled
-                button.target.disabled = true;
+                e.target.disabled = true;
                 //And the game checks for a winning move
                 if(this.checkForWin()) {
                     this.gameOver(this.checkForWin())
                 }
                 //If the letter is not a match and has not been clicked before
-            } else if (button.target.disabeled !== true) {
+            } else if (e.target.disabeled !== true) {
                 //The chosen letter is given a class of 'wrong'
-                button.target.className = 'wrong'
+                e.target.className = 'wrong'
                 //And is disabeled
-                button.target.disabled = true; 
+                e.target.disabled = true; 
                 //A life is removed
                 this.removeLife();
             }
         }
         
         //'keyup' branch
-        else if (button.type === 'keyup') {
+        else if (e.type === 'keyup') {
             //Store the letter buttons as an array for future manipulation
             const keys = [...document.querySelectorAll('.keyrow>button')]
             //Find the letter button that matches the key that was pressed and store it in a variable for future use
-            const letter = keys.find(letter => letter.innerText === button.key)
+            const letter = keys.find(letter => letter.innerText === e.key)
             //When a key is released, that key is run through the checkLetter method and is also checked if it has been pressed before
-            if(this.activePhrase.checkLetter(button.key) && letter.disabled !== true) {
+            if(this.activePhrase.checkLetter(e.key) && letter.disabled !== true) {
                 //If it returns true, then a correct key has been pushed and the matched letter is revealed
-                this.activePhrase.showMatchedLetter(button.key);
+                this.activePhrase.showMatchedLetter(e.key);
                 //Find the letter button that matches the key that was pressed and store it in a variable
-                const letter = keys.find(letter => letter.innerText === button.key)
+                const letter = keys.find(letter => letter.innerText === e.key)
                 //The button is then given the chosen class name
                 letter.className = 'chosen';
                 //And disabeled
